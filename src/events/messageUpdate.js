@@ -16,8 +16,12 @@ module.exports = {
                 return;
             }
         }
-
-        if (newMessage.author.id === newMessage.client.user.id || oldMessage.content === newMessage.content) {
+        const mediaHelperDiscordId = '1026547091121655808';
+        if (
+            newMessage.author.id !== mediaHelperDiscordId ||
+            newMessage.author.id === newMessage.client.user.id ||
+            oldMessage.content === newMessage.content
+        ) {
             return;
         }
 
