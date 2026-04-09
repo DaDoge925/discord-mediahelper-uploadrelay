@@ -1,0 +1,20 @@
+{
+  "name": "discord-video-uploadrelay",
+  "version": "1.0.0",
+  "description": "uploads media-helper discord bot's video into another channel of your choosing to prevent the content from expiring",
+  "homepage": "https://github.com/DaDoge925/discord-video-uploadrelay#readme",
+  "bugs": {
+    "url": "https://github.com/DaDoge925/discord-video-uploadrelay/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaDoge925/discord-video-uploadrelay.git"
+  },
+  "license": "ISC",
+  "author": "dadoge924",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
