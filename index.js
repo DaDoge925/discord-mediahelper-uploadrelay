@@ -24,7 +24,13 @@ if (!fs.existsSync(commandsPath)) {
     fs.mkdirSync(commandsPath, { recursive: true });
 }
 
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(commandsPath).filter(file => {
+    const filePath = path.join(commandsPath, file);
+    const stat = fs.statSync(filePath);
+    const ext = path.extname(file);
+
+    return stat.isFile() && (ext === '.js' || ext === '.cjs' || ext === '');
+});
 
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
