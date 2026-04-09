@@ -2,13 +2,13 @@
   "name": "discord-video-uploadrelay",
   "version": "1.0.0",
   "description": "uploads media-helper discord bot's video into another channel of your choosing to prevent the content from expiring",
-  "homepage": "https://github.com/DaDoge925/discord-video-uploadrelay#readme",
+  "homepage": "https://github.com/DaDoge925/discord-mediahelper-uploadrelay#readme",
   "bugs": {
-    "url": "https://github.com/DaDoge925/discord-video-uploadrelay/issues"
+    "url": "https://github.com/DaDoge925/discord-mediahelper-uploadrelay/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DaDoge925/discord-video-uploadrelay.git"
+    "url": "git+https://github.com/DaDoge925/discord-mediahelper-uploadrelay.git"
   },
   "license": "ISC",
   "author": "dadoge924",
