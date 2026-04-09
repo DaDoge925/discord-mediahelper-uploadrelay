@@ -1,6 +1,8 @@
-require('dotenv').config();
-const fs = require('fs');
 const path = require('path');
+// Force dotenv to read from the absolute path of this directory
+require('dotenv').config({ path: path.join(__dirname, '.env') }); 
+
+const fs = require('fs');
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
 
 const client = new Client({
@@ -15,8 +17,13 @@ const client = new Client({
 // Setup a Collection to store commands
 client.commands = new Collection();
 
-// Load Commands dynamically
-const commandsPath = path.join(__dirname, 'src', 'commands', "slash");
+// Load Commands dynamically using absolute paths
+const commandsPath = path.join(__dirname, 'src', 'commands', 'slash');
+// Ensure the directory exists to prevent crash on first run
+if (!fs.existsSync(commandsPath)) {
+    fs.mkdirSync(commandsPath, { recursive: true });
+}
+
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -29,7 +36,7 @@ for (const file of commandFiles) {
     }
 }
 
-
+// Load Events dynamically using absolute paths
 const eventsPath = path.join(__dirname, 'src', 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
@@ -43,4 +50,5 @@ for (const file of eventFiles) {
     }
 }
 
+// Log in
 client.login(process.env.DISCORD_BOT_TOKEN);
