@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
-const { updateConfig } = require(__dirname, '../utils/configManager.json');
+const path = require('path');
+const { updateConfig } = require(path.join(__dirname, '../../utils/configManager.js'));
 
 module.exports = {
     data: new SlashCommandBuilder()
