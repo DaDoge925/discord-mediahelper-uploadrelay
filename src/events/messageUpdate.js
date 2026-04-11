@@ -32,7 +32,6 @@ module.exports = {
         const originalMatch = newMessage.content.match(originalUrlRegex);
 
         if (!(videoMatch && originalMatch)) {
-            logger.log('Could not find both video and original URLs. Aborting.');
             return;
         }
 
@@ -51,12 +50,10 @@ module.exports = {
         const filePath = path.join(__dirname, '../../', fileName);
         const fileStream = fs.createWriteStream(filePath);
 
-        logger.log('Starting video download...');
         https.get(videoUrl, (response) => {
             response.pipe(fileStream);
             fileStream.on('finish', async () => {
                 fileStream.close();
-                logger.log('Video downloaded successfully.');
 
                 const messageContent = `-# \`${fileName}\` <${originalUrl}>`;
                 await targetChannel.send({
@@ -64,9 +61,7 @@ module.exports = {
                     files: [filePath]
                 });
 
-                logger.log(`Video uploaded to #${targetChannel.name}.`);
                 fs.unlinkSync(filePath);
-                logger.log('Temporary file deleted.');
             });
         }).on('error', (err) => {
             fs.unlink(filePath, () => {});

@@ -28,7 +28,6 @@ module.exports = {
         });
 
         try {
-            logger.log(`Started refreshing ${commandsData.length} application (/) commands.`);
 
             // Push the commands to Discord globally
             const data = await rest.put(
@@ -36,7 +35,6 @@ module.exports = {
                 { body: commandsData },
             );
 
-            logger.log(`Successfully reloaded ${data.length} application (/) commands.`);
         } catch (error) {
             logger.error('Error auto-registering commands:', error);
         }
