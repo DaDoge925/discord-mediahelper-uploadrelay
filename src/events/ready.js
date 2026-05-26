@@ -1,4 +1,4 @@
-const { Events, REST, Routes } = require('discord.js');
+const { ActivityType, Events, REST, Routes } = require('discord.js');
 const { getConfig } = require('../utils/configManager');
 const logger = require('../utils/logger');
 
@@ -38,5 +38,14 @@ module.exports = {
         } catch (error) {
             logger.error('Error auto-registering commands:', error);
         }
+
+        // --- 3. Rich Presence Support ---
+        client.user.setActivity("starting up", { type: ActivityType.Watching });
+
+        let activities = ["video relay service"];
+        let i = 0;
+        setInterval(() => {
+            client.user.setActivity(activities[i++ % activities.length], { type: ActivityType.Listening });
+        }, 120000);
     },
 };
